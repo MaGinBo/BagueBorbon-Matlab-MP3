@@ -1,0 +1,26 @@
+function f = MPprob3(X)
+
+    if length(X) >= 11
+       x = 10;  
+    else
+        x = length(X) - 1;
+    end
+
+    for i = 1:x
+        pf = polyfit(X(:, 1), X(:, 2), i);
+        pv = polyval(pf, X(:, 1));
+        pf = norm(X(:, 2) - pv);
+        y = [i, pf];
+        
+        if i == 1
+            z = y;
+        end
+        
+        if z(2) >= y(2)
+            t = y(1);
+        end
+    end
+
+f = polyfit(X(:, 1), X(:, 2), t);
+disp('The coefficients are: ')
+end
